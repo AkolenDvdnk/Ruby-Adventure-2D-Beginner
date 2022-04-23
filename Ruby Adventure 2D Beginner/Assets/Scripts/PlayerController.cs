@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     public float speed;
 
     private Vector3 moveInput;
@@ -12,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+
         rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
