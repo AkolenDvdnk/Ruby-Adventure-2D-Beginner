@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class CollectibleHealth : Collectible
+﻿public class CollectibleHealth : Collectible
 {
     public int healPower = 1;
 
