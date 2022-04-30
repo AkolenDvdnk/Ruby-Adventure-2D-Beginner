@@ -48,4 +48,11 @@ public class EnemyController : MonoBehaviour
 
         rb.MovePosition(position);
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth.instance.ChangeHealth(-1);
+        }
+    }
 }
