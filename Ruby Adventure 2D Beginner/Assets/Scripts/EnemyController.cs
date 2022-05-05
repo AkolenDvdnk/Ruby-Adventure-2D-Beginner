@@ -14,16 +14,27 @@ public class EnemyController : MonoBehaviour
     private float timer;
 
     private Rigidbody2D rb;
+    private Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
     private void Start()
     {
         timer = changeTime;
     }
     private void Update()
+    {
+        UpdateTimer();
+    }
+    private void FixedUpdate()
+    {
+        MovePosition();
+        SetAnimationParameter();
+    }
+    private void UpdateTimer()
     {
         timer -= Time.deltaTime;
 
@@ -33,7 +44,7 @@ public class EnemyController : MonoBehaviour
             timer = changeTime;
         }
     }
-    private void FixedUpdate()
+    private void MovePosition()
     {
         Vector2 position = rb.position;
 
@@ -47,6 +58,19 @@ public class EnemyController : MonoBehaviour
         }
 
         rb.MovePosition(position);
+    }
+    private void SetAnimationParameter()
+    {
+        if (vertical)
+        {
+            animator.SetFloat("Move X", 0);
+            animator.SetFloat("Move Y", direction);
+        }
+        else
+        {
+            animator.SetFloat("Move X", direction);
+            animator.SetFloat("Move Y", 0);
+        }
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
