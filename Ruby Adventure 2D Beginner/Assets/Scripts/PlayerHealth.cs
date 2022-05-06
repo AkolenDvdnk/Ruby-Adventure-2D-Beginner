@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public static PlayerHealth instance;
 
     public int maxHealth = 5;
+    [HideInInspector] public int currentHealth;
 
     public float timeInvincible = 2f;
 
@@ -14,11 +15,13 @@ public class PlayerHealth : MonoBehaviour
 
     private bool isInvincible;
 
-    [HideInInspector] public int currentHealth;
+    private Animator animator;
 
     private void Awake()
     {
         instance = this;
+
+        animator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -46,6 +49,8 @@ public class PlayerHealth : MonoBehaviour
         {
             if (isInvincible)
                 return;
+
+            animator.SetTrigger("Hit");
 
             isInvincible = true;
             invincibleTimer = timeInvincible;

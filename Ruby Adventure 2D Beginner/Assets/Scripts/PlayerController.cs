@@ -9,18 +9,23 @@ public class PlayerController : MonoBehaviour
     public float speed;
 
     private Vector3 moveInput;
+    private Vector2 lookDirection = new Vector2(1, 0);
 
     private Rigidbody2D rb;
+    private Animator animator;
 
     private void Awake()
     {
         instance = this;
 
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
     private void Update()
     {
         CheckInput();
+        UpdateLookDirection();
+        SetAnimationParameter();
     }
     private void FixedUpdate()
     {
@@ -35,5 +40,23 @@ public class PlayerController : MonoBehaviour
     private void ApplyMovement()
     {
         rb.velocity = moveInput * speed;
+    }
+    private void UpdateLookDirection()
+    {
+        Vector2 move = new Vector2(moveInput.x, moveInput.y);
+
+        if (!Mathf.Approximately(move.x, 0f) || !Mathf.Approximately(move.y, 0f))
+        {
+            lookDirection.Set(move.x, move.y);
+            lookDirection.Normalize();
+        }
+    }
+    private void SetAnimationParameter()
+    {
+        Vector2 move = new Vector2(moveInput.x, moveInput.y);
+
+        animator.SetFloat("Look X", lookDirection.x);
+        animator.SetFloat("Look Y", lookDirection.y);
+        animator.SetFloat("Speed", move.magnitude);
     }
 }
