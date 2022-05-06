@@ -510,7 +510,7 @@ Transform:
   m_GameObject: {fileID: 1195074539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.18, y: -1.21, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -5000,7 +5000,7 @@ GameObject:
   - component: {fileID: 1802765793}
   - component: {fileID: 1802765789}
   - component: {fileID: 1802765792}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5084,6 +5084,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  projectilePrefab: {fileID: 7547119923699968304, guid: 9d0737236602fb94aa62d8345aac1ecf,
+    type: 3}
 --- !u!50 &1802765790
 Rigidbody2D:
   serializedVersion: 4

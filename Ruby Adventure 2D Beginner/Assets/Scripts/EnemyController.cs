@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
 
     private float timer;
 
+    private bool broken = true;
+
     private Rigidbody2D rb;
     private Animator animator;
 
@@ -27,10 +29,16 @@ public class EnemyController : MonoBehaviour
     }
     private void Update()
     {
+        if (!broken)
+            return;
+
         UpdateTimer();
     }
     private void FixedUpdate()
     {
+        if (!broken)
+            return;
+
         MovePosition();
         SetAnimationParameter();
     }
@@ -78,5 +86,12 @@ public class EnemyController : MonoBehaviour
         {
             PlayerHealth.instance.ChangeHealth(-1);
         }
+    }
+    public void Fix()
+    {
+        broken = true;
+        rb.simulated = false;
+
+        animator.SetTrigger("Fixed");
     }
 }

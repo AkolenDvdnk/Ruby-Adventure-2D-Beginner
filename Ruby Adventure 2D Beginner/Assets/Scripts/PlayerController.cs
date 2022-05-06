@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
 
+    public GameObject projectilePrefab;
+
     private Vector3 moveInput;
     private Vector2 lookDirection = new Vector2(1, 0);
 
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         CheckInput();
         UpdateLookDirection();
+        UpdateInput();
         SetAnimationParameter();
     }
     private void FixedUpdate()
@@ -58,5 +61,21 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Look X", lookDirection.x);
         animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
+    }
+    private void Launch()
+    {
+        GameObject projectileObject = Instantiate(projectilePrefab, rb.position + Vector2.up * 0.5f, Quaternion.identity);
+
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
+        projectile.Launch(lookDirection, 300f);
+
+        animator.SetTrigger("Launch");
+    }
+    private void UpdateInput()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Launch();
+        }
     }
 }
