@@ -7,6 +7,11 @@
         if (PlayerHealth.instance.currentHealth == PlayerHealth.instance.maxHealth)
             return;
 
+        if (particleEffect != null)
+        {
+            Instantiate(particleEffect, transform.position, transform.rotation);
+        }
+
         PlayerHealth.instance.ChangeHealth(healPower);
 
         Destroy(gameObject);

@@ -111,4 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba6ef9cf1357864d98d96fd98b505cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleEffect: {fileID: 3774985124144431713, guid: 1238619ad57060e44b6e86a46ae694f2,
+    type: 3}
   healPower: 1

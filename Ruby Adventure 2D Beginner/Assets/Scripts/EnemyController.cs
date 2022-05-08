@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour
 
     public bool vertical;
 
+    public ParticleSystem smokeEffect;
+
     private int direction = 1;
 
     private float timer;
@@ -92,6 +94,7 @@ public class EnemyController : MonoBehaviour
         broken = true;
         rb.simulated = false;
 
+        smokeEffect.Stop();
         animator.SetTrigger("Fixed");
     }
 }
