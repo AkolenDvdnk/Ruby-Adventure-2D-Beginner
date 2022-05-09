@@ -25,9 +25,9 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        CheckInput();
+        GetMovementInput();
         UpdateLookDirection();
-        UpdateInput();
+        CheckInput();
         SetAnimationParameter();
     }
     private void FixedUpdate()
@@ -35,6 +35,17 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
     }
     private void CheckInput()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Launch();
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            RaycastNPC();
+        }
+    }
+    private void GetMovementInput()
     {
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
@@ -71,11 +82,18 @@ public class PlayerController : MonoBehaviour
 
         animator.SetTrigger("Launch");
     }
-    private void UpdateInput()
+    private void RaycastNPC()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        RaycastHit2D hit = Physics2D.Raycast(rb.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
+
+        if (hit.collider != null)
         {
-            Launch();
+            NPC npc = hit.collider.GetComponent<NPC>();
+
+            if (npc != null)
+            {
+                npc.DisplayDialog();
+            }
         }
     }
 }
