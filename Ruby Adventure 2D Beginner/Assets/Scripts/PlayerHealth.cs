@@ -6,6 +6,8 @@ public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth instance;
 
+    public AudioClip clip;
+
     public int maxHealth = 5;
     [HideInInspector] public int currentHealth;
 
@@ -50,6 +52,7 @@ public class PlayerHealth : MonoBehaviour
             if (isInvincible)
                 return;
 
+            PlayerController.instance.PlaySound(clip);
             animator.SetTrigger("Hit");
 
             isInvincible = true;

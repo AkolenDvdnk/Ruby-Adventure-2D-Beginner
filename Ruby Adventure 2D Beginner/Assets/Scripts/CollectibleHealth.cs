@@ -9,6 +9,7 @@
 
         if (particleEffect != null)
         {
+            PlayerController.instance.PlaySound(audioClip);
             Instantiate(particleEffect, transform.position, transform.rotation);
         }
 

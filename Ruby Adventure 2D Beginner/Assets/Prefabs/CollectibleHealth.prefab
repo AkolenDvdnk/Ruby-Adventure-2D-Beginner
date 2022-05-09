@@ -113,4 +113,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleEffect: {fileID: 3774985124144431713, guid: 1238619ad57060e44b6e86a46ae694f2,
     type: 3}
+  audioClip: {fileID: 8300000, guid: af5f8b64e3f58f24c87ff8f789b04f6c, type: 3}
   healPower: 1

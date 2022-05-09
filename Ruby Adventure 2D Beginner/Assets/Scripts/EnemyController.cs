@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public bool vertical;
 
     public ParticleSystem smokeEffect;
+    public AudioClip audioFixed;
 
     private int direction = 1;
 
@@ -19,11 +20,13 @@ public class EnemyController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
@@ -94,6 +97,7 @@ public class EnemyController : MonoBehaviour
         broken = true;
         rb.simulated = false;
 
+        audioSource.PlayOneShot(audioFixed);
         smokeEffect.Stop();
         animator.SetTrigger("Fixed");
     }

@@ -8,13 +8,16 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
 
+    [Header("Launch")]
     public GameObject projectilePrefab;
+    public AudioClip launchClip;
 
     private Vector3 moveInput;
     private Vector2 lookDirection = new Vector2(1, 0);
 
     private Rigidbody2D rb;
     private Animator animator;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -22,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -80,6 +84,7 @@ public class PlayerController : MonoBehaviour
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 300f);
 
+        PlaySound(launchClip);
         animator.SetTrigger("Launch");
     }
     private void RaycastNPC()
@@ -95,5 +100,9 @@ public class PlayerController : MonoBehaviour
                 npc.DisplayDialog();
             }
         }
+    }
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }
